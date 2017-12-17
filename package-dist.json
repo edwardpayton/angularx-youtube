@@ -1,14 +1,17 @@
 {
-	"name": "angular-npm-module-seed",
+	"name": "angularx-youtube",
 	"version": "1.0.0",
 	"description": "Wot!",
-	"main": "bundles/npm-module-seed.umd.min.js",
+	"main": "bundles/angularx-youtube.umd.min.js",
 	"module": "index.js",
 	"typings": "index.d.ts",
 	"keywords": [
-		"angular",
-		"angular2",
-		"angular 2"
+		"angular 5",
+		"ng",
+		"ng 5",
+		"angular youtube",
+		"youtube api",
+		"youtube"
 	],
 	"author": {
 		"name": "",
@@ -24,9 +27,9 @@
 		"url": ""
 	},
 	"peerDependencies": {
-		"@angular/core": "^2.4.0",
-		"reflect-metadata": "^0.1.8",
-		"rxjs": "^5.0.1",
-		"zone.js": "^0.7.2"
+		"@angular/common": "^5.0.0",
+		"@angular/core": "^5.0.0",
+		"rxjs": "^5.0.3",
+		"zone.js": "^0.8.4"
 	}
 }
