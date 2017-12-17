@@ -1,81 +1,75 @@
-# Angular NPM Module Seed
-## What's this?
-This project intends to give an easy-to-use starter for developing and publishing an Angular NPM module, so that it then be installed through the regular `npm install` command by other users.
+# angularx-youtube
 
-The whole project is heavily inspired by [Cyrille Tuzi](https://github.com/cyrilletuzi), through his [How to build and publish an Angular module](https://medium.com/@cyrilletuzi/how-to-build-and-publish-an-angular-module-7ad19c0b4464#.qcwybm3pa) Medium post.
+A Youtube Api module for Angular 5 and above
 
-## Getting ready
-* `fork` this repo and change its name to match your module's
-* `clone` your fork
-* review the `package.json` file contents and include your name, your module's name and any other information you find necessary. Also, make sure the listed dependencies and their version numbers are what you need them to be
+Supplied in UMD Bundle format through NPM
 
-> Don't pay attention to the `package-dist.json` file by now, we will get there later on.
+https://www.npmjs.com/package/angularx-youtube  
+https://github.com/edwardpayton/angularx-youtube
 
-* `npm install` to install all dependencies or `yarn`
+## Installation
 
-## Coding time!
-You'll probably want to write some awesome code now.
+To install this library, run:
 
-The seed includes a sample module file (`seed.module.ts`), as well as a sample service (`seed.service.ts`) and a sample public component (`seed.component.ts`), to get you inspired.
-
-So now it's the time to either rename those files and the classes inside them to your liking, or ditching them and writing your stuff from scratch.
-
-## Now compile it!
-Once you have some nice amount of code put into your services, components, filters..., it's probably a good time to compile your module and taste the rewards for your hard work. These are the steps:
-* open the `tsconfig.json` file and include in the `paths` value **all the modules** your project depends on, as the final bundle won’t include them directly
-* open the `rollup.config.js` file and change the following values
-```js
-export default {
-	// (...)
-	dest: 'dist/bundles/npm-module-seed.umd.js', // change this to your module's name
-	// (...)
-	moduleName: 'ng.npm-module-seed', // change this to your module's name
-	globals: {
-	// Your module use Angular things (at least the NgModule decorator), 
-	// but your bundle should not include Angular.
-	// So you need to set Angular as a global. And you need to know the UMD module 
-	// name for each module. It follows this convention: ng.modulename 
-	// Also, include the RXJS only if your module uses them.
-		'@angular/core': 'ng.core',
-		'@angular/common': 'ng.common',
-		'rxjs/Observable': 'Rx',
-		'rxjs/ReplaySubject': 'Rx',
-		'rxjs/add/operator/map': 'Rx.Observable.prototype',
-		'rxjs/add/operator/mergeMap': 'Rx.Observable.prototype',
-		'rxjs/add/observable/fromEvent': 'Rx.Observable',
-		'rxjs/add/observable/of': 'Rx.Observable'
-	}
-}
+```bash
+$ npm install angularx-youtube --save
 ```
-* open the `package-dist.json` file (now is the right time to do it!) and change the details there. Keep in mind that **these details will only apply to the package you will publish to NPM.** Since we will only publish our generated `dist` folder, the building process will copy this file to the said folder and change its name. Make sure you include your module's dependencies (i.e. `@angular/core` and so on) as `peerDependencies`.
-* finally, `npm run build` will compile, tree-shake, uglify... your module's code into the `dist` folder.
 
-## Use your code locally
+## Consuming the library
 
-It would probably be a good idea to test your new module locally before publishing it to the NPM repository.
+You can import the library in any Angular application by running:
 
-I suggest creating a separate Angular project and importing your module into it. To do that, you'll need to run `npm link` inside your module's `dist` folder; then navigate to your testing project root and run `npm link {name-of-module}`. This will symlink your original module to the `node_modules` folder of your testing project.
+```bash
+$ npm install angularx-youtube --save
+```
 
-Just remember to run `npm run build` in your original module root folder so that its symlinked `dist` folder grabs the changes you make.
+and then from your Angular `AppModule`:
 
-## Publish your awesome module (finally!)
+```typescript
+// In yout Module
 
-Once you're ready to publish your hard work so that the rest of us can take advantage of it, please follow this easy steps:
-* configure your NPM acount, if you haven't done it already, following [these instructions](https://docs.npmjs.com/getting-started/publishing-npm-packages)
-* navigate to your module's `dist` folder and run `npm publish`
+// Import the Youtube Module
+import { YoutubeModule } from 'angularx-youtube';
 
-Anytime you need to update your module, just rebuild, change the version number and publish again.
+@NgModule({
+	...
+	imports: [
+		// Specify the library as an import
+		YoutubeModule
+	],
+	...
+})
+```
 
-## Other stuff
-### To-do
+Once your module is imported, you can use it in your Angular application:
 
-* Adding unit tests.
-* Explore using OpaqueTokens for referencing services.
+```typescript
+import { YoutubeComponent } from 'angularx-youtube';
+```
 
-### Get in touch
+```xml
+<!-- You can now use the Youtube component in your app.component.html -->
+<youtube-component
+	[videoId]="id"
+	(ready)="onReady($event)"
+	(change)="onChange($event)"
+></youtube-component>
+```
 
-Feel free to drop me a line if you have an issue, doubt, problem or suggestion, even just to tell me what you think. You can leave an issue here or give me a shout on [Twitter](http://twitter.com/davguij).
+You will then have full access to the [Youtube iFrame Api](https://developers.google.com/youtube/iframe_api_reference)
 
-### License
+For example:
 
-MIT
+```typescript
+	onReady(player): void {
+		this.player = player;
+	}
+
+	onChange(event): void {
+		console.log(event)
+	}
+```
+
+## License
+
+MIT © [Edward Payton](mailto:edwardjpayton@gmail.com)
