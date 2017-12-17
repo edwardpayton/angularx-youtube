@@ -14,7 +14,7 @@ export class YoutubeApiService {
 		this._window = getWindow();
 	}
 
-	loadApi() {
+	loadApi(): void {
 		if(!this.hasLoaded) {
 			// console.log('loadApi')
 			let scriptTag = this._window.document.createElement("script");

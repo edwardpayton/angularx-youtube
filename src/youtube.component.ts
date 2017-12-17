@@ -4,7 +4,7 @@ import { YoutubeApiService } from './youtube.api.service';
 import { YoutubePlayerService } from './youtube.player.service';
 
 @Component({
-	selector: 'seed-component',
+	selector: 'youtube-component',
 	template: '<div id="playerElement"></div>'
 })
 export class YoutubeComponent implements AfterContentInit {

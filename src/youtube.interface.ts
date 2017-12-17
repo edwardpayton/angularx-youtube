@@ -1,5 +1,4 @@
 import {} from '@types/youtube';
-import { EventEmitter } from '@angular/core';
 
 export interface PlayerConfig {
     elementId: string,
@@ -7,7 +6,7 @@ export interface PlayerConfig {
     height: number,
     videoId?: string,
     outputs: {
-        ready: EventEmitter<YT.Player>,
-        change: EventEmitter<YT.PlayerEvent>
+        ready: any,
+        change: any
     }
 }

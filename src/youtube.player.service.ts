@@ -34,10 +34,10 @@ export class YoutubePlayerService {
 			videoId: config.videoId,
 			events: {
 			onReady: (event: any) => {
-				config.outputs.ready.emit(event.target);
+				config.outputs.ready(event.target);
 			},
 			onStateChange: (event: any) => {
-				config.outputs.change.emit(event);
+				config.outputs.change(event);
 			}
 			}
 		});
