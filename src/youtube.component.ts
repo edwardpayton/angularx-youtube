@@ -26,7 +26,7 @@ export class YoutubeComponent implements AfterContentInit {
 	}
 
 	ngAfterContentInit() {
-		const elementId = 'playerId',
+		const elementId = 'player-' + this.videoId,
 		elementContainer = this.renderer.selectRootElement('#playerElement')
 		this.renderer.setAttribute(elementContainer, 'id', elementId);
 	
